@@ -11,30 +11,75 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 - logica de boton de reinicio que borre todos los inputs lo ya creado 
 */
 
-document.querySelector("#boton-cantidad-familiares").onclick = function () {
+/// como seteo multiples atributos a la vez, en 1 sola llamada.
+/// cual es la diferencia entre una funcion definida, y una clásica.
+
+///////////////////////////////////////////////////////////////////////////////// 
+
+const obtenerCantidadFamilia = document.querySelector("#boton-cantidad-familiares").onclick = function () {
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
     crearCamposVacios(cantidadFamiliares);
-
-    return console.log(cantidadFamiliares);
+    return cantidadFamiliares;
 }
-
-
-let crearCamposVacios = function (cantidadFamiliares) {
+///////////////////////////////////////////////////////////////////////////////// 
+const obtenerResultadosEdades = document.querySelector("#boton-calcular-edades").onclick = function () {
+    let nodoAConvertir = document.querySelectorAll(".familiares");
+    let arrayConvertido = convertNodeToArray(nodoAConvertir);
+    document.querySelector("#mayor-edad").textContent = obtenerMayorEdad(arrayConvertido);
+    document.querySelector("#menor-edad").textContent = obtenerMenorEdad(arrayConvertido);
+    document.querySelector("#promedio-edad").textContent = obtenerPromedioEdad(arrayConvertido);
+    document.querySelector("#lista-de-resultados").hidden = false;
+    return console.log(arrayConvertido);
+}
+/////////////////////////////////////////////////////////////////////////////////
+const crearCamposVacios = function (cantidadFamiliares) {
     for (let i = 1; i <= cantidadFamiliares; i++) {
         let nuevoNodo = document.createElement("input");
-        nuevoNodo.className = "familiar"
-        nuevoNodo.placeholder = `este familiar ${i}`
         let forma = document.querySelector("#formulario-familia");
+        let espacioVacio = document.createElement("br")
+        nuevoNodo.className = `familiares`
+        nuevoNodo.id = `familiar-${i}`
+        nuevoNodo.placeholder = `Familiar ${i}`
         forma.appendChild(nuevoNodo);
+        forma.appendChild(espacioVacio);
     }
-
-
-
-
-
 }
-
-
+///////////////////////////////////////////////////////////////////////////////// 
+const convertNodeToArray = function (nodoLlamado) {
+    const nodeListNumeros = nodoLlamado;
+    const arrayNumeros = [];
+    for (let i = 0; i < nodeListNumeros.length; i++) {
+        arrayNumeros.push(Number(nodeListNumeros[i].value));
+    } return arrayNumeros;
+}
+/////////////////////////////////////////////////////////////////////////////////
+const obtenerPromedioEdad = function (arrayObjetivo) {
+    let sumaNumeros = 0;
+    for (let i = 0; i < arrayObjetivo.length; i++) {
+        sumaNumeros += arrayObjetivo[i];
+    }
+    let promedioNumeros = (sumaNumeros / arrayObjetivo.length).toFixed(1);
+    return promedioNumeros;
+}
+/////////////////////////////////////////////////////////////////////////////////
+const obtenerMenorEdad = function (arrayObjetivo) {
+    let numeroBase = arrayObjetivo[0];
+    for (let i = 0; i < arrayObjetivo.length; i++) {
+        if (arrayObjetivo[i] < numeroBase) {
+            numeroBase = arrayObjetivo[i];
+        }
+    } return numeroBase;
+}
+/////////////////////////////////////////////////////////////////////////////////
+const obtenerMayorEdad = function (arrayObjetivo) {
+    let numeroBase = 0;
+    for (let i = 0; i < arrayObjetivo.length; i++) {
+        let numeroCirculando = arrayObjetivo[i];
+        if (numeroCirculando > numeroBase) {
+            numeroBase = numeroCirculando;
+        }
+    } return numeroBase;
+}
 
 
 /*
