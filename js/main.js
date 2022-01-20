@@ -13,35 +13,68 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 
 /// como seteo multiples atributos a la vez, en 1 sola llamada.
 /// cual es la diferencia entre una funcion definida, y una clásica.
+/// como llamar al espacio vacio 2 veces, para meter 2 "br"
+/// como remover multiples nodos child con misma clase
 
+
+/*
+
+const li = document.querySelectorAll(".list-item-class");
+for (let i = 0; i <= li.length; i++) {
+    l = li[i];
+    l.remove();
+
+
+*/
 ///////////////////////////////////////////////////////////////////////////////// 
-
-const obtenerCantidadFamilia = document.querySelector("#boton-cantidad-familiares").onclick = function () {
+const botonReiniciarCosas = document.querySelector("#boton-reiniciar").onclick = function () {
+    let formulario = document.querySelector("#formulario-familia");
+    let listaResultados = document.querySelector("#lista-de-resultados");
+    let nodoAConvertir = document.querySelectorAll(".familiares");
+    for (let i = 1; i <= nodoAConvertir.length; i++) {
+        let familiares = document.querySelector(`#familiar-${i}`);
+        let labels = document.querySelector(`#label-familiar-${i}`);
+        let resultado = document.querySelector(`#resultado-${i}`);
+        listaResultados.removeChild(resultado);
+        formulario.removeChild(familiares);
+        formulario.removeChild(labels);
+    }
+    document.querySelector("#lista-de-resultados").hidden = true;
+}
+/////////////////////////////////////////////////////////////////////////////////
+const obtenerCantidadFamiliares = document.querySelector("#boton-cantidad-familiares").onclick = function () {
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
     crearCamposVacios(cantidadFamiliares);
+    document.querySelector("#cantidad-familiares").value = "";
     return cantidadFamiliares;
 }
 ///////////////////////////////////////////////////////////////////////////////// 
 const obtenerResultadosEdades = document.querySelector("#boton-calcular-edades").onclick = function () {
     let nodoAConvertir = document.querySelectorAll(".familiares");
     let arrayConvertido = convertNodeToArray(nodoAConvertir);
-    document.querySelector("#mayor-edad").textContent = obtenerMayorEdad(arrayConvertido);
-    document.querySelector("#menor-edad").textContent = obtenerMenorEdad(arrayConvertido);
-    document.querySelector("#promedio-edad").textContent = obtenerPromedioEdad(arrayConvertido);
+    document.querySelector("#resultado-1").textContent = obtenerMayorEdad(arrayConvertido);
+    document.querySelector("#resultado-2").textContent = obtenerMenorEdad(arrayConvertido);
+    document.querySelector("#resultado-3").textContent = obtenerPromedioEdad(arrayConvertido);
     document.querySelector("#lista-de-resultados").hidden = false;
     return console.log(arrayConvertido);
+
 }
 /////////////////////////////////////////////////////////////////////////////////
 const crearCamposVacios = function (cantidadFamiliares) {
     for (let i = 1; i <= cantidadFamiliares; i++) {
-        let nuevoNodo = document.createElement("input");
-        let forma = document.querySelector("#formulario-familia");
-        let espacioVacio = document.createElement("br")
-        nuevoNodo.className = `familiares`
-        nuevoNodo.id = `familiar-${i}`
-        nuevoNodo.placeholder = `Familiar ${i}`
-        forma.appendChild(nuevoNodo);
-        forma.appendChild(espacioVacio);
+        let nuevoInput = document.createElement("input");
+        let nuevoLabel = document.createElement("label");
+        //        let espacioVacio = document.createElement("br");
+        let formulario = document.querySelector("#formulario-familia");
+        let etiquetaDeFamiliar = document.createTextNode(`Familar ${i}: `);
+        nuevoInput.className = `familiares`;
+        nuevoInput.id = `familiar-${i}`;
+        nuevoInput.placeholder = `Familiar ${i}`;
+        nuevoLabel.id = `label-familiar-${i}`;
+        nuevoLabel.appendChild(etiquetaDeFamiliar);
+        formulario.appendChild(nuevoLabel);
+        formulario.appendChild(nuevoInput);
+        //        formulario.appendChild(espacioVacio);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////// 
