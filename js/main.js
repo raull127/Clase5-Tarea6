@@ -4,69 +4,55 @@ Crear tantos inputs+labels como gente haya para completar la edad de cada integr
 Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad, la menor edad y el promedio del grupo familiar.
 Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
 
-- input de cuanta gente hay en la family
-- recoger ese input en una variable para usarla luego 
-- logica para agregar inputs/labels en base al num de integrantes de arriba
-- logica para calcular promedio, menor, mayor
-- logica de boton de reinicio que borre todos los inputs lo ya creado 
-*/
-
 /// como seteo multiples atributos a la vez, en 1 sola llamada.
 /// cual es la diferencia entre una funcion definida, y una clásica.
 /// como llamar al espacio vacio 2 veces, para meter 2 "br"
 /// como remover multiples nodos child con misma clase
 
-
-/*
-
-const li = document.querySelectorAll(".list-item-class");
-for (let i = 0; i <= li.length; i++) {
-    l = li[i];
-    l.remove();
-
-
 */
-///////////////////////////////////////////////////////////////////////////////// 
-const botonReiniciarCosas = document.querySelector("#boton-reiniciar").onclick = function () {
-    let formulario = document.querySelector("#formulario-familia");
-    let listaResultados = document.querySelector("#lista-de-resultados");
-    let nodoAConvertir = document.querySelectorAll(".familiares");
-    for (let i = 1; i <= nodoAConvertir.length; i++) {
-        let familiares = document.querySelector(`#familiar-${i}`);
-        let labels = document.querySelector(`#label-familiar-${i}`);
-        let resultado = document.querySelector(`#resultado-${i}`);
-        listaResultados.removeChild(resultado);
-        formulario.removeChild(familiares);
-        formulario.removeChild(labels);
-    }
-    document.querySelector("#lista-de-resultados").hidden = true;
-}
 /////////////////////////////////////////////////////////////////////////////////
-const obtenerCantidadFamiliares = document.querySelector("#boton-cantidad-familiares").onclick = function () {
-    let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
+///////////////////////// Botones ////////////////////////
+
+const obtenerCantidadFamiliares = document.querySelector("#procesar-cantidad-familiares").onclick = function () {
+    botonReiniciarElementos();
+    const cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
+    const etiquetaFamiliar = document.createTextNode("Introducir Edades Grupo Familiar");
+    const formulario = document.querySelector("#formulario-familia");
+    formulario.appendChild(etiquetaFamiliar);
     crearCamposVacios(cantidadFamiliares);
     document.querySelector("#cantidad-familiares").value = "";
-    return cantidadFamiliares;
+    document.querySelector("#boton-calcular-edades").hidden = false;
+    document.querySelector("#boton-reiniciar").hidden = false;
+    document.querySelector("#separador").hidden = false;
 }
 ///////////////////////////////////////////////////////////////////////////////// 
 const obtenerResultadosEdades = document.querySelector("#boton-calcular-edades").onclick = function () {
-    let nodoAConvertir = document.querySelectorAll(".familiares");
-    let arrayConvertido = convertNodeToArray(nodoAConvertir);
-    document.querySelector("#resultado-1").textContent = obtenerMayorEdad(arrayConvertido);
-    document.querySelector("#resultado-2").textContent = obtenerMenorEdad(arrayConvertido);
-    document.querySelector("#resultado-3").textContent = obtenerPromedioEdad(arrayConvertido);
+    const nodoEdadesConvertir = document.querySelectorAll(".familiares");
+    const arrayEdadesConvertido = convertNodeToArray(nodoEdadesConvertir);
+    document.querySelector("#resultado-1").textContent = `Mayor Edad: ${obtenerMayorEdad(arrayEdadesConvertido)}`;
+    document.querySelector("#resultado-2").textContent = `Menor Edad: ${obtenerMenorEdad(arrayEdadesConvertido)}`;
+    document.querySelector("#resultado-3").textContent = `Promedio Edad: ${obtenerPromedioEdad(arrayEdadesConvertido)}`;
     document.querySelector("#lista-de-resultados").hidden = false;
-    return console.log(arrayConvertido);
-
+}
+///////////////////////////////////////////////////////////////////////////////// 
+const botonReiniciarElementos = document.querySelector("#boton-reiniciar").onclick = function () {
+    document.querySelector("#formulario-familia").innerHTML = "";
+    for(let i = 1; i <= 3; i++) {
+        document.querySelector(`#resultado-${i}`).innerHTML = "";
+    }
+    document.querySelector("#lista-de-resultados").hidden = true;
+    document.querySelector("#boton-calcular-edades").hidden = true;
+    document.querySelector("#boton-reiniciar").hidden = true;
+    document.querySelector("#separador").hidden = true;
 }
 /////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Otras Operaciones Extra ///////////////////////////
 const crearCamposVacios = function (cantidadFamiliares) {
     for (let i = 1; i <= cantidadFamiliares; i++) {
-        let nuevoInput = document.createElement("input");
-        let nuevoLabel = document.createElement("label");
-        //        let espacioVacio = document.createElement("br");
-        let formulario = document.querySelector("#formulario-familia");
-        let etiquetaDeFamiliar = document.createTextNode(`Familar ${i}: `);
+        const nuevoInput = document.createElement("input");
+        const nuevoLabel = document.createElement("label");
+        const formulario = document.querySelector("#formulario-familia");
+        const etiquetaDeFamiliar = document.createTextNode(` | Familar ${i}: `);
         nuevoInput.className = `familiares`;
         nuevoInput.id = `familiar-${i}`;
         nuevoInput.placeholder = `Familiar ${i}`;
@@ -74,7 +60,6 @@ const crearCamposVacios = function (cantidadFamiliares) {
         nuevoLabel.appendChild(etiquetaDeFamiliar);
         formulario.appendChild(nuevoLabel);
         formulario.appendChild(nuevoInput);
-        //        formulario.appendChild(espacioVacio);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////// 
@@ -85,7 +70,10 @@ const convertNodeToArray = function (nodoLlamado) {
         arrayNumeros.push(Number(nodeListNumeros[i].value));
     } return arrayNumeros;
 }
+
 /////////////////////////////////////////////////////////////////////////////////
+/////////// Calculos de Mayor, Menor, Promedio de Edades ////////////////////////
+
 const obtenerPromedioEdad = function (arrayObjetivo) {
     let sumaNumeros = 0;
     for (let i = 0; i < arrayObjetivo.length; i++) {
@@ -113,7 +101,7 @@ const obtenerMayorEdad = function (arrayObjetivo) {
         }
     } return numeroBase;
 }
-
+/////////////////////////////////////////////////////////////////////////////////
 
 /*
 TAREA:
@@ -121,10 +109,3 @@ Crear una interfaz que permita agregar ó quitar (botones agregar y quitar) inpu
 Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor salario anual, menor salario anual, salario anual promedio y salario mensual promedio.
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
-
-
-
-
-
-
-

@@ -1,0 +1,55 @@
+
+html {
+    background-color: rgb(42, 43, 64);
+    color: azure;
+    font-family: helvetica, arial;
+}
+
+.boton {
+    margin-left: 0px;
+    padding: 4px;
+    border-radius: 6px;
+    border-bottom-color: darkgray;
+    border-top-color: aliceblue;
+    border-left-color: aliceblue;
+    border-right-color: darkgray;
+    background-color: azure;
+    font-family: monospace;
+}
+
+.entrada, .familiares {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+h1 {
+    text-shadow: 1px 1px 2px lightgray;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+#lista-de-resultados {
+    width: fit-content;
+    background-color: rgb(67 68 90);
+    border-radius: 5px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-block-start: 10px;
+    padding-block-end: 10px;
+}
+
+#div-3 {
+    font-weight: bold;
+    font-family: verdana;
+    font-size: 20px;
+}
+
+.resultados-finales {
+    font-family: Verdana, sans-serif;
+    padding: 5px;
+}
+
+#separador {
+    width: 500px;
+    margin-left: 0px;
+}

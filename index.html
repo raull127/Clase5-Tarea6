@@ -13,43 +13,40 @@
 <body>
 
     <header>
-        <h1>Buen...</h1>
+        <h1>Calculadora de cosas familiares</h1>
     </header>
 
-    <div>
-        Cuanta gente hay en la family:
-        <input type="text" id="cantidad-familiares" placeholder="cantidad familiares">
-        <button type="button" id="boton-cantidad-familiares">Procesar</button>
+    <div id="div-3">
+        Introducir Cantidad de Miembros familiares: <br> <br>
+        <input type="number" class="entrada" id="cantidad-familiares" placeholder="Numero de Familiares">
+        <button type="button" class="boton" id="procesar-cantidad-familiares"> Introducir </button>
         <br>
     </div>
     <br>
+
     <form id="formulario-familia">
+        <div id="div-0">
+
+        </div>
 
     </form>
+
     <br>
+    <hr class="solid" hidden="true" id="separador"> <br>
+
+
     <div id="div-1">
-        Calcular al mayor, menor y el promedio de edades:
-        <button type="button" id="boton-calcular-edades">Calcular</button>
-        <button type="button" id="boton-reiniciar">Reset</button>
+        Calcular la mayor edad, la menor y el promedio.
+        <button type="button" class="boton" id="boton-calcular-edades" hidden="true"> Calcular </button>
+        <button type="button" class="boton" id="boton-reiniciar" hidden="true"> Reiniciar </button>
         <br>
         <ul id="lista-de-resultados" hidden="true">
-            <label for="mayor-edad">La Mayor Edad: </label> <li id="resultado-1" class="resultados-finales"> </li> 
-            <label for="menor-edad">La Menor Edad: </label> <li id="resultado-2" class="resultados-finales"> </li>
-            <label for="menor-edad">Promedio de Edad: </label> <li id="resultado-3" class="resultados-finales"> </li>
+            <li id="resultado-1" class="resultados-finales"> </li>
+            <li id="resultado-2" class="resultados-finales"> </li>
+            <li id="resultado-3" class="resultados-finales"> </li>
         </ul>
 
     </div>
-    <br>
-
-
-
-
-
-
-
-
-
-
 
     <script src='js/main.js'></script>
 </body>
