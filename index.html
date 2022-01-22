@@ -7,7 +7,6 @@
     <title>Tarea 6 - C5 - TestWeb</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/styles.css'>
-
 </head>
 
 <body>
@@ -16,35 +15,64 @@
         <h1>Calculadora de cosas familiares</h1>
     </header>
 
-    <div id="div-3">
-        Introducir Cantidad de Miembros familiares: <br> <br>
+    <div id="div-1">
+        Introducir Cantidad de familiares: <br> <br>
         <input type="number" class="entrada" id="cantidad-familiares" placeholder="Numero de Familiares">
         <button type="button" class="boton" id="procesar-cantidad-familiares"> Introducir </button>
-        <br>
+        <button type="button" class="boton" id="boton-reiniciar" hidden="true"> Reiniciar Sección </button>
+        <br> <br>
     </div>
-    <br>
+
 
     <form id="formulario-familia">
-        <div id="div-0">
+        <div id="div-2">
 
         </div>
 
     </form>
 
     <br>
-    <hr class="solid" hidden="true" id="separador"> <br>
 
-
-    <div id="div-1">
+    <div id="div-3" hidden="true">
         Calcular la mayor edad, la menor y el promedio.
         <button type="button" class="boton" id="boton-calcular-edades" hidden="true"> Calcular </button>
-        <button type="button" class="boton" id="boton-reiniciar" hidden="true"> Reiniciar </button>
         <br>
         <ul id="lista-de-resultados" hidden="true">
             <li id="resultado-1" class="resultados-finales"> </li>
             <li id="resultado-2" class="resultados-finales"> </li>
             <li id="resultado-3" class="resultados-finales"> </li>
         </ul>
+    </div>
+
+    <br>
+    <hr class="solid" id="separador-2" > <br> <!-- -----------------------------------------  -->
+
+    <div id="div-4" >
+        Cantidad de Familiares con Empleo:
+        <input type="number" class="entrada" id="cantidad-trabajadores" placeholder="Numero Aportantes">
+        <button type="button" class="boton" id="procesar-trabajadores"> Introducir </button>
+        <button type="button" class="boton" id="boton-reiniciar-sueldos" hidden="true"> Reiniciar Sección </button>
+        <br>
+        <br>
+        <form id="formulario-sueldos">
+
+        </form>
+
+        <br>
+
+        <div id="div-calcular-sueldos" hidden="true">
+            Procesar Sueldos:
+            <button type="button" class="boton" id="procesar-sueldos"> Procesar </button>
+        </div>
+
+        <br>
+        <ul id="lista-de-sueldos" hidden="true">
+            <li id="producto-1" class="resultados-finales"> </li>
+            <li id="producto-2" class="resultados-finales"> </li>
+            <li id="producto-3" class="resultados-finales"> </li>
+            <li id="producto-4" class="resultados-finales"> </li>
+        </ul>
+
 
     </div>
 

@@ -28,7 +28,7 @@ h1 {
     text-underline-position: under;
 }
 
-#lista-de-resultados {
+#lista-de-resultados, #lista-de-sueldos {
     width: fit-content;
     background-color: rgb(67 68 90);
     border-radius: 5px;
@@ -38,7 +38,7 @@ h1 {
     padding-block-end: 10px;
 }
 
-#div-3 {
+#div-1 {
     font-weight: bold;
     font-family: verdana;
     font-size: 20px;
@@ -50,6 +50,11 @@ h1 {
 }
 
 #separador {
+    width: 300px;
+    margin-left: 0px;
+}
+
+#separador-2 {
     width: 500px;
     margin-left: 0px;
 }
